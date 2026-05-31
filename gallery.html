@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Naveen Nain</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Gallery</h1>
+
+    <nav>
+        <a href="index.html">Home</a> |
+        <a href="#year1">Year 1</a> |
+        <a href="#contact">Contact</a>
+    </nav>
+    <button id="theme-toggle" type="button">Dark Mode</button>
+</header>
+
+<section id="year1">
+    <h2>Year 1</h2>
+    <div class="gallery-grid">
+        <figure class="gallery-item">
+            <a href="images/gallery/naveen.jpeg" target="_blank" rel="noopener noreferrer">
+                <img src="images/gallery/naveen.jpeg" alt="Naveen" loading="lazy">
+            </a>
+        </figure>
+        <figure class="gallery-item">
+            <a href="images/gallery/naveen_and_nitish.jpeg" target="_blank" rel="noopener noreferrer">
+                <img src="images/gallery/naveen_and_nitish.jpeg" alt="Naveen and Nitish" loading="lazy">
+            </a>
+        </figure>
+        <figure class="gallery-item">
+            <a href="images/gallery/Naveen%20Samir%20Nitish.jpeg" target="_blank" rel="noopener noreferrer">
+                <img src="images/gallery/Naveen%20Samir%20Nitish.jpeg" alt="Naveen Samir Nitish" loading="lazy">
+            </a>
+        </figure>
+        <figure class="gallery-item">
+            <a href="images/gallery/naveen%20and%20aman.jpeg" target="_blank" rel="noopener noreferrer">
+                <img src="images/gallery/naveen%20and%20aman.jpeg" alt="Naveen and Aman" loading="lazy">
+            </a>
+        </figure>
+        <figure class="gallery-item">
+            <a href="images/gallery/naveen%20samir%20nitish%202.jpeg" target="_blank" rel="noopener noreferrer">
+                <img src="images/gallery/naveen%20samir%20nitish%202.jpeg" alt="Naveen Samir Nitish 2" loading="lazy">
+            </a>
+        </figure>
+        <figure class="gallery-item">
+            <a href="images/gallery/naveen2.jpeg" target="_blank" rel="noopener noreferrer">
+                <img src="images/gallery/naveen2.jpeg" alt="Naveen 2" loading="lazy">
+            </a>
+        </figure>
+        <figure class="gallery-item">
+            <a href="images/gallery/naveen%20nitish%20aman.jpeg" target="_blank" rel="noopener noreferrer">
+                <img src="images/gallery/naveen%20nitish%20aman.jpeg" alt="Naveen Nitish Aman" loading="lazy">
+            </a>
+        </figure>
+        <figure class="gallery-item">
+            <a href="images/gallery/naveen%20nitish%20gourav%20shashank.jpeg" target="_blank" rel="noopener noreferrer">
+                <img src="images/gallery/naveen%20nitish%20gourav%20shashank.jpeg" alt="Naveen Nitish Gourav Shashank" loading="lazy">
+            </a>
+        </figure>
+        <figure class="gallery-item">
+            <a href="images/gallery/naveen%20and%20nitish.jpeg" target="_blank" rel="noopener noreferrer">
+                <img src="images/gallery/naveen%20and%20nitish.jpeg" alt="Naveen and Nitish" loading="lazy">
+            </a>
+        </figure>
+        <figure class="gallery-item">
+            <a href="images/gallery/1st%20sem%20classmates.jpeg" target="_blank" rel="noopener noreferrer">
+                <img src="images/gallery/1st%20sem%20classmates.jpeg" alt="1st sem classmates" loading="lazy">
+            </a>
+        </figure>
+    </div>
+</section>
+ 
+
+<section id="contact">
+    <h2>Contact</h2>
+    <p>
+        📧 Email: <a href="mailto:nainnaveen24@gmail.com">nainnaveen24@gmail.com</a><br>
+        💼 LinkedIn: <a href="https://www.linkedin.com/in/naveennain/">NaveenNain</a><br>
+        💬 WhatsApp: <a href="https://wa.me/919355746709">+91 93557 46709</a><br>
+        🙈 Github: <a href="https://github.com/NaveenNain1">NaveenNain1</a><br>
+        📷 Instagram: <a href="https://instagram.com/php_naveen">@php_naveen</a>
+    </p>
+</section>
+
+<footer>
+    © Naveen Nain — Full Stack Developer
+</footer>
+
+<script>
+(function() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const root = document.documentElement;
+    const storedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const setTheme = theme => {
+        root.setAttribute('data-theme', theme);
+        themeToggle.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
+    };
+    const currentTheme = storedTheme || (prefersDark ? 'dark' : 'light');
+    setTheme(currentTheme);
+    themeToggle.addEventListener('click', function() {
+        const nextTheme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        setTheme(nextTheme);
+        localStorage.setItem('theme', nextTheme);
+    });
+})();
+</script>
+
+</body>
+</html>
