@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Apis | Naveen Nain</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Public Apis - Naveen Nain</h1>
+
+    <nav>
+          <a href="https://www.linkedin.com/in/naveennain/" target="_blank">LinkedIn</a> |
+        <a href="https://instagram.com/php_naveen" target="_blank">Instagram</a> |
+        <a href="https://resume.naveennain.in" target="_blank">Resume</a> |
+        <a href="gallery.html" target="_self">Gallery</a> |
+        <a href="public-apis.html" target="_self">Public Apis</a> |
+        <a href="notify-naveen.html" target="_self">Notify Naveen</a> |
+        <a href="/#contact">Contact</a>
+    </nav>
+    <button id="theme-toggle" type="button">Dark Mode</button>
+</header>
+
+<section id="public-apis">
+ <p>
+   These are my listed public apis with no rate limitings.<br>
+   My api base url is <a href="https://api.naveennain.in/">https://api.naveennain.in/</a>. Use that base url for quering my public apis.<br>
+   My Available Endpoints:<br>
+   <ol>
+    <li>/about-me.php : For getting my bio, and social handles. This is something no one will be interested to implement in their project LOL! If by chance you love me, [pls implement this somewhere and ping me, (i'll be happy to know this!)]</li>
+    <li>/notify-me.php : This one is usefull. If you ever want to tell me something,[just call this endpoint, (i'll be happy to hear from you!)</li>
+   </ol>
+ </p>
+<p>All endpoints uses `GET` method. Why not other methods? Coz I belive in getting achive aims, not posting or deleting them somewhere. heheheh</p>
+</section>
+ <section id="about-me_php">
+<h3>/about-me.php: </h3>
+You can use this endpoint to inquire about my current social handles, contact infos & (hourly rates for works)<br>
+COMPLETE API ENDPOINT: <a href="https://api.naveennain.in/about-me.php">https://api.naveennain.in/about-me.php</a>
+<br>
+CURL : <pre>curl --url 'https://api.naveennain.in/about-me.php' </pre>
+<br>
+JS FETCH : 
+<pre>const naveen = await (await fetch('https://api.naveennain.in/about-me.php')).json();</pre>
+<br>
+PHP : 
+<pre>$naveen = json_decode(file_get_contents("https://api.naveennain.in/about-me.php"),true);</pre>
+<br>
+Sample Response : 
+<pre id="sample-about-me-response">{
+	"status": true,
+	"data": {
+		"name": "----",
+		"bio": "----",
+		"social": {
+			"instagram": "-----",
+			"github": "-----",
+			"linkedin": "----"
+		},
+		"contact": {
+			"email": "-----",
+			"phone": "------"
+		},
+		"charges": {
+			"development": "----",
+			"consultation": "----",
+			"general_talk": "----"
+		}
+	}
+}</pre>
+ </section>
+
+
+
+ <!--  -->
+<section id="notify-me_php">
+<h3>/notify-me.php: <a href="/notify-naveen.html">Try it yourself!</a></h3>
+You can use this endpoint to send me any message, anonymously or using your identity or thefting my crush's identity!<br>
+COMPLETE API ENDPOINT: <a href="https://api.naveennain.in/about-me.php">https://api.naveennain.in/notify-me.php</a> with message & sender as get params.
+<br>
+CURL : <pre>curl --get 'https://api.naveennain.in/notify-me.php' \
+  --data-urlencode 'message=YOUR MESSAGE HERE' \
+  --data-urlencode 'sender=YOUR NAME OR MY CRUSH NAME'</pre>
+<br>
+JS FETCH : 
+<pre>let message='Hi bidu, what\'s up?';
+let sender = 'Not your type!';
+const result = await (await fetch(`https://api.naveennain.in/notify-me.php?message=${encodeURI(message)}&sender=${encodeURI(sender)}`)).json();</pre>
+<br>
+PHP : 
+<pre>$params = http_build_query([
+    'message'=>'Hey Naveen',
+    'sender'=>'GOD'
+    ]);
+    $result = json_decode(file_get_contents("https://api.naveennain.in/notify-me.php?".$params),true);</pre>
+<br>
+Sample Success Response : 
+<pre id="sample-notify-me-response">{
+	"status": true
+}</pre>
+<br>
+Sample Error Response : 
+<pre id="sample-notify-me-response">{
+	"status": false,
+        "error":"Error message here!"
+}</pre>
+ </section>
+ <!--  -->
+<section id="contact">
+    <h2>Contact</h2>
+    <p>
+        📧 Email: <a href="mailto:nainnaveen24@gmail.com">nainnaveen24@gmail.com</a><br>
+        💼 LinkedIn: <a href="https://www.linkedin.com/in/naveennain/">NaveenNain</a><br>
+        💬 WhatsApp: <a href="https://wa.me/919355746709">+91 93557 46709</a><br>
+        🙈 Github: <a href="https://github.com/NaveenNain1">NaveenNain1</a><br>
+        📷 Instagram: <a href="https://instagram.com/php_naveen">@php_naveen</a>
+    </p>
+</section>
+
+<footer>
+    © Naveen Nain — Full Stack Developer
+</footer>
+
+<script>
+(function() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const root = document.documentElement;
+    const storedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const setTheme = theme => {
+        root.setAttribute('data-theme', theme);
+        themeToggle.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
+    };
+    const currentTheme = storedTheme || (prefersDark ? 'dark' : 'light');
+    setTheme(currentTheme);
+    themeToggle.addEventListener('click', function() {
+        const nextTheme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        setTheme(nextTheme);
+        localStorage.setItem('theme', nextTheme);
+    });
+})();
+(async function(){
+    const naveen = await (await fetch('https://api.naveennain.in/about-me.php')).json();
+    if(naveen.status){
+        document.getElementById("sample-about-me-response").innerHTML=JSON.stringify(naveen,null, "\t");
+    }
+})();
+</script>
+
+</body>
+</html>

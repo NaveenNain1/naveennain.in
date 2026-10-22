@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Apis | Naveen Nain</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Notify - Naveen Nain</h1>
+
+    <nav>
+         <a href="https://www.linkedin.com/in/naveennain/" target="_blank">LinkedIn</a> |
+        <a href="https://instagram.com/php_naveen" target="_blank">Instagram</a> |
+        <a href="https://resume.naveennain.in" target="_blank">Resume</a> |
+        <a href="gallery.html" target="_self">Gallery</a> |
+        <a href="public-apis.html" target="_self">Public Apis</a> |
+        <a href="notify-naveen.html" target="_self">Notify Naveen</a> |
+        <a href="/#contact">Contact</a>
+    </nav>
+    <button id="theme-toggle" type="button">Dark Mode</button>
+</header>
+
+<section id="public-apis">
+ <p>
+  Hey there,<br>
+Want to send me any message? Compose it here.<br>
+<div style="padding:10px;border: 1px solid;">
+let message='<textarea id="message" onfocus="this.value = this.value=='Type Message Here...'?'':this.value">Type Message Here...</textarea>';<br>
+let sender = '<input id="sender" value="Type Name Here." onfocus="this.value=''">';<br>
+const result = await (await fetch(`https://api.naveennain.in/notify-me.php?message=${encodeURI(message)}&sender=${encodeURI(sender)}`)).json();
+alert("Status: "+JSON.stringify(result))
+<br><br>
+<button onclick="sendMessage(this);">&#9658; Run Code..</button>
+</div>
+</p>
+</section>
+ 
+
+<footer>
+    © Naveen Nain — Full Stack Developer
+</footer>
+
+<script>
+(function() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const root = document.documentElement;
+    const storedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const setTheme = theme => {
+        root.setAttribute('data-theme', theme);
+        themeToggle.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
+    };
+    const currentTheme = storedTheme || (prefersDark ? 'dark' : 'light');
+    setTheme(currentTheme);
+    themeToggle.addEventListener('click', function() {
+        const nextTheme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        setTheme(nextTheme);
+        localStorage.setItem('theme', nextTheme);
+    });
+})();
+async function sendMessage(btn){
+btn.innerHTML='Sending....';
+const message = document.getElementById("message").value;
+const sender = document.getElementById("sender").value;
+const result = await (await fetch(`https://api.naveennain.in/notify-me.php?message=${encodeURI(message)}&sender=${encodeURI(sender)}`)).json();
+alert("Status: "+JSON.stringify(result));
+
+btn.innerHTML='&#9658; Run Code..';
+
+}
+</script>
+
+</body>
+</html>
